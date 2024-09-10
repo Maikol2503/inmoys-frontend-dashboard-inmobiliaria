@@ -1,0 +1,344 @@
+<!-- nuevo-anuncio-piso.component.html -->
+ 
+<div class="nuevo-anuncio-formulario">
+    <form (ngSubmit)="onSubmit(nuevaPropiedadForm)" #nuevaPropiedadForm="ngForm">
+      <div class="container-data-propiedad">
+
+          <div class="header">
+            <h2></h2>
+          </div>
+
+          <!-- Campo Ubicación -->
+          <div class="ubicacion">
+            <h3>Datos de ubicación</h3>
+            <div class="inputs-ubicacion">
+              <!-- provincia -->
+              <div class="form-group">
+                <label for="provincia">Provincia:</label>
+                <input
+                  type="text"
+                  id="provincia"
+                  class="form-control"
+                  name="provincia"
+                  ngModel
+                  required
+                />
+              </div>
+              <!-- ciudad -->
+              <div class="form-group">
+                <label for="ciudad">Ciudad:</label>
+                <input
+                  type="text"
+                  id="ciudad"
+                  class="form-control"
+                  name="ciudad"
+                  ngModel
+                  required
+                />
+              </div>
+              <!-- zona -->
+              <div class="form-group">
+                <label for="zona">Zona:</label>
+                <input
+                  type="text"
+                  id="zona"
+                  class="form-control"
+                  name="zona"
+                  ngModel
+                  required
+                />
+              </div>
+              <!-- cp -->
+              <div class="form-group">
+                <label for="cp">CP:</label>
+                <input
+                  type="number"
+                  id="cp"
+                  class="form-control"
+                  name="cp"
+                  ngModel
+                  required
+                />
+              </div>
+
+              <!-- numero calle -->
+              <div class="form-group">
+                <label for="numeroCalle">Numero Calle:</label>
+                <input
+                  type="number"
+                  id="numeroCalle"
+                  class="form-control"
+                  name="numeroCalle"
+                  ngModel
+                />
+              </div>
+
+              <!-- nombre calle -->
+              <div class="form-group">
+                <label for="nombreCalle">Nombre Calle:</label>
+                <input
+                  type="text"
+                  id="nombreCalle"
+                  class="form-control"
+                  name="nombreCalle"
+                  ngModel
+                />
+              </div>
+
+
+
+              <!-- puerta -->
+              <div class="form-group">
+                <label for="puerta">Puerta:</label>
+                <input
+                  type="text"
+                  id="puerta"
+                  class="form-control"
+                  name="puerta"
+                  ngModel
+                />
+              </div>
+              <!-- pplanta -->
+              <div class="form-group">
+                <label for="planta">Planta:</label>
+                <input
+                  type="number"
+                  id="planta"
+                  class="form-control"
+                  name="planta"
+                  ngModel
+                />
+              </div>
+            </div>
+          </div>
+          
+
+
+
+
+
+
+          <!-- datos economicos -->
+          <div class="datos-economicos">
+            <h3>Datos económicos</h3>
+            <!-- Campo tipo de transaccion-->
+            <div class="inputs-datos-economicos">
+              <div class="form-group">
+                <label for="transaccion">Tipo de transaccion:</label>
+                <select
+                  id="transaccion"
+                  class="form-control"
+                  name="transaccion"
+                  ngModel
+                  required
+                >
+                  <option value="venta">venta</option>
+                  <option value="alquiler">alquiler</option>
+                </select>
+              </div>
+              <!-- Campo Precio -->
+              <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input
+                  type="number"
+                  id="precio"
+                  class="form-control"
+                  name="precio"
+                  ngModel
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="data-propiedad">
+            <h3>Datos de la propiedad</h3>
+            <div class="inputs-data-propiedad">
+              <!-- Campo Tipo de Propiedad -->
+              <div class="form-group">
+                <label for="tipoPropiedad">Tipo de Propiedad:</label>
+                <select
+                  id="tipoPropiedad"
+                  class="form-control"
+                  name="tipoPropiedad"
+                  [(ngModel)]="tipoPropiedad"
+                  required
+                >
+                  <option value="vivienda">Vivienda</option>
+                  <option value="oficina">Oficina</option>
+                  <option value="terreno">Terreno</option>
+                </select>
+              </div>
+            </div>
+            <!-- detalles -->
+            <div class="detalles">
+              <!-- detalles Vivienda -->
+              <app-form-vivienda
+                *ngIf="tipoPropiedad == 'vivienda'"
+                (viviendaDataChange)="actualizarDatosDetallesPropiedad($event)">
+              </app-form-vivienda>
+              <!-- detalles Oficina -->
+              <app-form-oficina
+               *ngIf="tipoPropiedad == 'oficina'"
+               (oficinaDataChange)="actualizarDatosDetallesPropiedad($event)">
+              </app-form-oficina>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+        <!-- Campo Descripción -->
+        <div class="descripcion"> 
+          <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea
+              id="descripcion"
+              class="form-control"
+              name="descripcion"
+              ngModel
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        
+
+        <!-- Display Image Previews -->
+        <div class="imagenes">
+          <!-- Campo Imágenes -->
+          <div class="form-group">
+            <label for="imagenes">Imágenes:</label>
+            <input
+              type="file"
+              id="imagenes"
+              class="form-control"
+              name="imagenes"
+              (change)="onFileSelected($event)"
+              multiple
+              required
+            />
+          </div>
+          <!-- imagenes size -->
+          <div *ngIf="totalImageSizeMB > 0">
+            <p>Tamaño total de las imágenes seleccionadas: {{ totalImageSizeMB | number: '1.2-2' }} MB</p>
+          </div>
+          <!-- imagenes Previews -->
+          <div class="image-preview-container" *ngIf="imagePreviews.length > 0">
+            <h3>Previsualización de Imágenes:</h3>
+            <div class="image-grid">
+              <div class="image-preview" *ngFor="let img of imagePreviews">
+                <button class="btn-eliminar-foto" (click)="delete(img.id_image)">Eliminar</button>
+                <img [src]="img.image_name"  alt="Previsualización de imagen" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+
+    
+      
+
+
+  
+      <div class="data-propietario">
+        <div class="header">
+          <h2>Datos del propietario</h2>
+        </div>
+        <div class="div-inputs-datos-cliente">
+          
+          <!-- Campo nombre -->
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input
+              type="text"
+              id="nombre"
+              class="form-control"
+              name="nombre"
+              ngModel
+              required
+            />
+          </div>
+  
+          <!-- Campo apellido -->
+          <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input
+              type="text"
+              id="apellido"
+              class="form-control"
+              name="apellido"
+              ngModel
+              required
+            />
+          </div>
+  
+          
+  
+          <!-- Campo documento -->
+          <div class="form-group">
+            <label for="documento">Documento:</label>
+            <input
+              type="text"
+              id="documento"
+              class="form-control"
+              name="documento"
+              ngModel
+              required
+            />
+          </div>
+  
+          <!-- Campo email -->
+          <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input
+              type="text"
+              id="correo"
+              class="form-control"
+              name="correo"
+              ngModel
+              required
+            />
+          </div>
+  
+          <!-- Campo telefono -->
+          <div class="form-group">
+            <label for="telefono">Telefono:</label>
+            <input
+              type="text"
+              id="telefono"
+              class="form-control"
+              name="telefono"
+              ngModel
+              required
+            />
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      
+     
+      
+     
+  
+      <!-- Botón Enviar -->
+      <button type="submit" class="btn btn-primary" [disabled]="!nuevaPropiedadForm.valid">
+        Publicar
+      </button>
+    </form>
+
+     
+  </div>
+  

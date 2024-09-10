@@ -1,0 +1,117 @@
+<div class="header">
+    <button class="btn-editar-propiedad" [routerLink]="['/editar-propiedad', propertyId]">Editar Esta Propiedad</button>
+    
+</div>
+<div class="container">
+    <div class="data-propiedad div1">
+        <p class="sku">SKU {{propertiesData.sku}}</p>
+        <h1>Datos de la propiedad</h1>
+        <ul> 
+            <li class="item item-ubicacion">
+                <img width="20px" src="https://cdn-icons-png.flaticon.com/128/684/684908.png" alt="imagen ubicacion">
+                <p class="ubicacion">{{ propertiesData.ciudad }}, {{ propertiesData.provincia }}, {{ propertiesData.zona}} {{ propertiesData.numeroCalle}}, {{ propertiesData.cp}}, {{ propertiesData.planta}}{{ propertiesData.puerta}}</p>
+            </li>
+            <li class="item item-precio">
+                <p class="precio">{{propertiesData.precio}}€</p>
+                <div class="iconos-caracteristicas">
+                     <div *ngIf="propertiesData.detalles?.habitaciones" class="icono">
+                        <img height="23px" src="https://cdn-icons-png.flaticon.com/128/864/864595.png" alt="icono habitacion">
+                        <p>{{propertiesData.detalles?.habitaciones}}</p>
+                     </div>
+                     <div *ngIf="propertiesData.detalles?.banos" class="icono">
+                        <img height="23px" src="https://cdn-icons-png.flaticon.com/128/810/810166.png" alt="icono baño">
+                        <p>{{propertiesData.detalles?.banos}}</p>
+                     </div>
+                     <div *ngIf="propertiesData.detalles?.tamano" class="icono">
+                        <img height="23px" src="https://cdn-icons-png.flaticon.com/128/4228/4228838.png" alt="icono tamaño">
+                        <p>{{propertiesData.detalles?.tamano}}m²</p>
+                     </div>
+                </div>
+            </li>
+            <li class="item item-equipamiento">
+                <h2>Equipamiento</h2>
+                <div class="iconos-equipamiento">
+                    <div *ngIf="propertiesData.detalles?.ascensor" class="icono">
+                        <img height="30px" src="https://cdn-icons-png.flaticon.com/128/13390/13390926.png" alt="">
+                        <p>Ascensor</p>
+                    </div>
+                    <div *ngIf="propertiesData.detalles?.piscina" class="icono">
+                        <img height="30px" src="https://cdn-icons-png.flaticon.com/128/3437/3437732.png" alt="">
+                        <p>Piscina</p>
+                    </div>
+                    <div *ngIf="propertiesData.detalles?.trastero" class="icono">
+                        <img height="30px"  src="https://cdn-icons-png.flaticon.com/128/6842/6842296.png" alt="">
+                        <p>Trastero</p>
+                    </div>
+                    <div class="icono" *ngIf="propertiesData.detalles?.garaje" >
+                        <img height="30px"  src="https://cdn-icons-png.flaticon.com/128/1571/1571991.png" alt="">
+                        <p>Garage</p>
+                    </div>
+                    <div class="icono" *ngIf="propertiesData.detalles?.aire" >
+                        <img height="30px"  src="https://cdn-icons-png.flaticon.com/128/3550/3550996.png" alt="">
+                        <p>Aire Acondicionado</p>
+                    </div>
+                    <div class="icono" *ngIf="propertiesData.detalles?.calefaccion" >
+                        <img height="30px"  src="https://cdn-icons-png.flaticon.com/128/289/289759.png" alt="">
+                        <p>Calefaccion</p>
+                    </div>
+                    <div class="icono" *ngIf="propertiesData.detalles?.gimnasio" >
+                        <img height="30px"  src="https://cdn-icons-png.flaticon.com/128/8065/8065747.png" alt="">
+                        <p>Gimnasio</p>
+                    </div>
+                    <div class="icono" *ngIf="propertiesData.detalles?.balcon" >
+                        <img height="30px"  src="https://cdn-icons-png.flaticon.com/128/11392/11392402.png" alt="">
+                        <p>Balcon</p>
+                    </div>
+                    <div class="icono" *ngIf="propertiesData.detalles?.terraza" >
+                        <img height="30px"  src="https://cdn-icons-png.flaticon.com/128/174/174446.png" alt="">
+                        <p>Terraza</p>
+                    </div>
+                    <div class="icono" *ngIf="propertiesData.detalles?.jardin" >
+                        <img height="30px"  src="https://cdn-icons-png.flaticon.com/128/149/149569.png" alt="">
+                        <p>Jardin</p>
+                    </div>
+                </div>
+            </li>
+            <li class="item item-descripcion">
+                <h2>Descripcion:</h2>
+                <p class="descripcion">{{propertiesData.descripcion}}</p>
+            </li>
+            <li class="item item-caracteristicas">
+                <h2>Caracteristicas</h2>
+                <ul class="caracteristicas">
+                    <li *ngIf="propertiesData.detalles?.calefaccion" class="item">Combustible Calefaccion: {{propertiesData.detalles.combustibleCalefaccion}}</li>
+                    <li *ngIf="propertiesData.detalles?.orientacion"  class="item">Interior / Exterior: {{propertiesData.detalles.orientacion}}</li>
+                    <li *ngIf="propertiesData.detalles?.planta" class="item">Plata Nº {{propertiesData.detalles.planta}}</li>
+                    <li *ngIf="propertiesData.detalles?.calefaccion"  class="item">Sistema calefaccion {{propertiesData.detalles.sistemaCalefaccion}}</li>
+                    <li *ngIf="propertiesData.detalles?.consumo"  class="item">Consumo: {{propertiesData.detalles.consumo}}</li>
+                    <li *ngIf="propertiesData.detalles?.emisiones"  class="item">Emisiones: {{propertiesData.detalles.emisiones}}</li>
+                    <li *ngIf="propertiesData.detalles?.certificadoEnergetico"  class="item">Certificado Energético: {{propertiesData.detalles.certificadoEnergetico}}</li>
+                    <li *ngIf="propertiesData.detalles?.anoConstruccion"  class="item">Año de construccion: {{propertiesData.detalles.anoConstruccion}}</li>
+                </ul>
+            </li>
+        </ul>
+
+
+        <ul class="fotos-propiedad div2">
+            <div class="image-preview" *ngFor="let img of imagePreviews">
+                <img  [src]="getImageUrl(img.image_name)"  alt="Previsualización de imagen" />
+            </div>
+        </ul>
+    </div>
+    
+
+    <div class="data-propietario div3">
+        <h1>Datos del propietario</h1>
+        <ul class="lista">
+            <li class="item">Nombre: {{propertiesData.nombre}}</li>
+            <li class="item">Apelllido: {{propertiesData.apellido}}</li>
+            <li class="item">Documento: {{propertiesData.documento}}</li>
+            <li class="item">Telefono: {{propertiesData.telefono}}</li>
+            <li class="item">Correo: {{propertiesData.correo}}</li>
+        </ul>
+    </div>
+    
+</div>
+
+

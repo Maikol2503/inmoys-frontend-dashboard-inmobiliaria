@@ -1,0 +1,87 @@
+
+<!-- <button class="btn-volver" (click)="atras()"><img width="100%" src="https://cdn-icons-png.flaticon.com/128/507/507257.png" alt=""></button> -->
+<input
+    class="buscador"
+    type="text"
+    placeholder="Buscar por documento"
+    (input)="onSearch($event)"  />
+
+
+<div class="container" *ngIf="dataSource && dataSource.data.length > 0; else noContratos">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- SKU Column -->
+    <ng-container matColumnDef="sku">
+      <th mat-header-cell *matHeaderCellDef> SKU propiedad</th>
+      <td mat-cell *matCellDef="let element"> {{element.sku}} </td>
+    </ng-container>
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID contrato</th>
+        <td mat-cell *matCellDef="let element">{{element.id_contrato}}</td>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre cliente </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre_cliente}} </td>
+    </ng-container>
+
+    <!-- Apellido Column -->
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef> Apellido cliente </th>
+      <td mat-cell *matCellDef="let element"> {{element.apellido_cliente}} </td>
+    </ng-container>
+
+    <!-- Documento Column -->
+    <ng-container matColumnDef="documento">
+      <th mat-header-cell *matHeaderCellDef> Documento cliente </th>
+      <td mat-cell *matCellDef="let element"> {{element.documento_cliente}} </td>
+    </ng-container>
+
+    <!-- Tipo Column -->
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo de propiedad</th>
+      <td mat-cell *matCellDef="let element"> {{element.tipo_propiedad}} </td>
+    </ng-container>
+
+
+    <!-- Transacción Column -->
+    <ng-container matColumnDef="transaccion">
+      <th mat-header-cell *matHeaderCellDef> Transacción </th>
+      <td mat-cell *matCellDef="let element"> {{element.transaccion_propiedad}} </td>
+    </ng-container>
+
+    <!-- Ubicación Column -->
+    <ng-container matColumnDef="ubicacion">
+      <th mat-header-cell *matHeaderCellDef> Ubicación de la propiedad</th>
+      <td mat-cell *matCellDef="let element"> {{element.provincia_propiedad}}, {{element.ciudad_propiedad}}, {{element.zona_propiedad}} {{element.numeroCalle_propiedad}} </td>
+    </ng-container>
+
+    <!-- Acciones Column -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <!-- <button mat-raised-button class="btn-editar" [routerLink]="['/ver-propiedad', element.id_property]">Ver</button>
+        <button mat-raised-button class="btn-eliminar" (click)="eliminar(element.id_property)">Eliminar</button> -->
+      </td>
+    </ng-container>
+    
+
+    <!-- Header Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- Data Rows -->
+    
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+        [routerLink]="['/contrato', element.id_contrato]"
+        class="clickable-row">
+    </tr>
+  </table>
+
+</div>
+
+
+  <ng-template #noContratos >
+    <h1 class="no-contratos" style="margin-top: 40px;">No hay contratos disponibles.</h1>
+  </ng-template>

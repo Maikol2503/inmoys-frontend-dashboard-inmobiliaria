@@ -1,0 +1,160 @@
+<div class="container">
+  <div class="inputs">
+    <!-- Orientación del piso -->
+    <div class="form-group">
+      <label for="orientacion">Orientación del piso:</label>
+      <select id="orientacion" class="form-control" name="orientacion" [(ngModel)]="viviendaData.orientacion" (change)="onFormChange()" required>
+        <option value="interior">Interior</option>
+        <option value="exterior">Exterior</option>
+      </select>
+    </div>
+
+    <!-- Campo Número de Habitaciones -->
+    <div class="form-group">
+      <label for="habitaciones">Número de Habitaciones:</label>
+      <input type="number" id="habitaciones" class="form-control" name="habitaciones" [(ngModel)]="viviendaData.habitaciones" (change)="onFormChange()" required />
+    </div>
+
+    <!-- Campo Número de Baños -->
+    <div class="form-group">
+      <label for="banos">Número de Baños:</label>
+      <input type="number" id="banos" class="form-control" name="banos" [(ngModel)]="viviendaData.banos" (change)="onFormChange()" required />
+    </div>
+
+    <!-- Campo Tamaño -->
+    <div class="form-group">
+      <label for="tamano">Tamaño m2:</label>
+      <input type="number" 
+             id="tamano" 
+             class="form-control" 
+             name="tamano" 
+             [(ngModel)]="viviendaData.tamano"
+             (change)="onFormChange()" 
+             required />
+    </div>
+
+    <!-- Año de construcción -->
+    <div class="form-group">
+      <label for="anoConstruccion">Año de construcción:</label>
+      <input type="number" id="anoConstruccion" class="form-control" name="anoConstruccion" [(ngModel)]="viviendaData.anoConstruccion" (change)="onFormChange()" required />
+    </div>
+
+    <!-- Estado del inmueble -->
+    <div class="form-group">
+      <label for="estadoInmueble">Estado del inmueble:</label>
+      <select id="estadoInmueble" class="form-control" name="estadoInmueble" [(ngModel)]="viviendaData.estadoInmueble" (change)="onFormChange()" required>
+        <option value="nuevo">Nuevo</option>
+        <option value="reformado">Reformado</option>
+        <option value="buenEstado">Buen estado</option>
+        <option value="malEstado">Mal estado</option>
+        <option value="Construccion">En construcción</option>
+        <option value="aReformar">Para reformar</option>
+      </select>
+    </div>
+
+    <!-- Consumo -->
+    <div class="form-group">
+      <label for="consumo">Consumo:</label>
+      <select id="consumo" class="form-control" name="consumo" [(ngModel)]="viviendaData.consumo" (change)="onFormChange()" required>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+        <option value="d">D</option>
+        <option value="e">E</option>
+      </select>
+    </div>
+
+    <!-- Emisiones -->
+    <div class="form-group">
+      <label for="emisiones">Emisiones:</label>
+      <select id="emisiones" class="form-control" name="emisiones" [(ngModel)]="viviendaData.emisiones" (change)="onFormChange()" required>
+        <option value="a">A</option>
+        <option value="b">B</option>
+        <option value="c">C</option>
+        <option value="d">D</option>
+        <option value="e">E</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Características adicionales -->
+  <div class="form-group caracteristicas-adicionales">
+    <div class="checkbox-group" >
+      <label for="ascensor" [ngClass]="{ 'active': viviendaData.ascensor }">
+        <input type="checkbox" id="ascensor" name="ascensor" [(ngModel)]="viviendaData.ascensor" (change)="onFormChange()" />
+        Ascensor
+      </label>
+
+      <label for="piscina"  [ngClass]="{ 'active': viviendaData.piscina }">
+        <input type="checkbox" id="piscina" name="piscina" [(ngModel)]="viviendaData.piscina" (change)="onFormChange()" />
+        Piscina
+      </label>
+
+      <label for="trastero"  [ngClass]="{ 'active': viviendaData.trastero }">
+        <input type="checkbox" id="trastero" name="trastero" [(ngModel)]="viviendaData.trastero" (change)="onFormChange()" />
+        Trastero
+      </label>
+
+      <label for="garaje"  [ngClass]="{ 'active': viviendaData.garaje }">
+        <input type="checkbox" id="garaje" name="garaje" [(ngModel)]="viviendaData.garaje" (change)="onFormChange()" />
+        Garaje
+      </label>
+
+      <label for="gimnasio"  [ngClass]="{ 'active': viviendaData.gimnasio }">
+        <input type="checkbox" id="gimnasio" name="gimnasio" [(ngModel)]="viviendaData.gimnasio" (change)="onFormChange()" />
+        Gimnasio
+      </label>
+
+      <label for="aire"  [ngClass]="{ 'active': viviendaData.aire }">
+        <input type="checkbox" id="aire" name="aire" [(ngModel)]="viviendaData.aire" (change)="onFormChange()" />
+        Aire Acondicionado
+      </label>
+
+      <label for="calefaccion"  [ngClass]="{ 'active': viviendaData.calefaccion }">
+        <input type="checkbox" id="calefaccion" name="calefaccion" [(ngModel)]="viviendaData.calefaccion" (change)="onFormChange()" />
+        Calefacción
+      </label>
+
+      <label for="balcon"  [ngClass]="{ 'active': viviendaData.balcon }">
+        <input type="checkbox" id="balcon" name="balcon" [(ngModel)]="viviendaData.balcon" (change)="onFormChange()" />
+        Balcón
+      </label>
+
+      <label for="terraza"  [ngClass]="{ 'active': viviendaData.terraza }">
+        <input type="checkbox" id="terraza" name="terraza" [(ngModel)]="viviendaData.terraza" (change)="onFormChange()" />
+        Terraza
+      </label>
+
+      <label for="jardin"  [ngClass]="{ 'active': viviendaData.jardin }">
+        <input type="checkbox" id="jardin" name="jardin" [(ngModel)]="viviendaData.jardin" (change)="onFormChange()" />
+        Jardín
+      </label>
+
+      <label for="armarioEmpotrado"  [ngClass]="{ 'active': viviendaData.armarioEmpotrado}">
+        <input type="checkbox" id="armarioEmpotrado" name="armarioEmpotrado" [(ngModel)]="viviendaData.armarioEmpotrado" (change)="onFormChange()" />
+        Armario empotrado
+      </label>
+    </div>
+  </div>
+
+  <!-- Sistema de calefacción -->
+  <div class="inputs-calefaccion" *ngIf="viviendaData.calefaccion">
+    <div class="form-group">
+      <label for="sistemaCalefaccion">Sistema de calefacción:</label>
+      <select id="sistemaCalefaccion" class="form-control" name="sistemaCalefaccion" [(ngModel)]="viviendaData.sistemaCalefaccion" (change)="onFormChange()" required>
+        <option value="central">Central</option>
+        <option value="independiente">Independiente</option>
+      </select>
+    </div>
+
+    <!-- Combustible de calefacción -->
+    <div class="form-group">
+      <label for="combustibleCalefaccion">Combustible de calefacción:</label>
+      <select id="combustibleCalefaccion" class="form-control" name="combustibleCalefaccion" [(ngModel)]="viviendaData.combustibleCalefaccion" (change)="onFormChange()" required>
+        <option value="Gasnatural">Gas natural</option>
+        <option value="butano">Butano</option>
+        <option value="electrico">Eléctrico</option>
+      </select>
+    </div>
+  </div>
+</div>

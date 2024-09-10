@@ -1,0 +1,38 @@
+<div class="contrato-container">
+    <!-- Div para la información del Cliente -->
+    <div class="cliente-info">
+      <h3>Información del Cliente</h3>
+      <p><strong>Nombre:</strong> {{ contrato?.nombre_cliente }}</p>
+      <p><strong>Apellido:</strong> {{ contrato?.apellido_cliente }}</p>
+      <p><strong>Documento:</strong> {{ contrato?.documento_cliente }}</p>
+      <p><strong>Fecha de Creación del Contrato:</strong> {{ contrato?.fecha_creacion_contrato}}</p>
+      <p><strong>ID del Contrato:</strong> {{ contrato?.id_contrato }}</p>
+    </div>
+  
+    <!-- Div para la información de la Propiedad -->
+    <div class="propiedad-info" [routerLink]="['/ver-propiedad', contrato?.property.id]">
+      <h3>Información de la Propiedad</h3>
+      <p><strong>Ciudad:</strong> {{ contrato?.property.ciudad }}</p>
+      <p><strong>Disponibilidad:</strong> {{ contrato?.property.disponibilidad }}</p>
+      <p><strong>Provincia:</strong> {{ contrato?.property.provincia }}</p>
+      <p><strong>SKU:</strong> {{ contrato?.property.sku }}</p>
+      <p><strong>Tipo:</strong> {{ contrato?.property.tipo }}</p>
+      <p><strong>Transacción:</strong> {{ contrato?.property.transaccion }}</p>
+      <p><strong>Zona:</strong> {{ contrato?.property.zona }}</p>
+      <p><strong>Número de Calle:</strong> {{ contrato?.property.numeroCalle }}</p>
+      <p><strong>Planta:</strong> {{ contrato?.property.planta }}</p>
+      <p><strong>Puerta:</strong> {{ contrato?.property.puerta }}</p>
+      <p><strong>Precio:</strong> {{ contrato?.property.precio}}</p>
+    </div>
+  
+    <!-- Div para la información del Propietario -->
+    <div class="propietario-info">
+      <h3>Información del Propietario</h3>
+      <p><strong>Nombre:</strong> {{ contrato?.propietario.nombre }}</p>
+      <p><strong>Apellido:</strong> {{ contrato?.propietario.apellido }}</p>
+      <p><strong>Documento:</strong> {{ contrato.propietario.documento }}</p>
+      <p><strong>Correo:</strong> {{ contrato?.propietario.correo }}</p>
+      <p><strong>Teléfono:</strong> {{ contrato?.propietario.telefono }}</p>
+    </div>
+  </div>
+  

@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+    border: none;
+    list-style: none;
+    font-family: "Roboto", sans-serif;
+    cursor: default;
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); */
+
+
+:root{
+    --color-1:rgb(0, 123, 255);
+    --color-2:rgb(65, 157, 255);
+    --swiper-navigation-size: 25px !important;
+    --swiper-navigation-color: #ffffff;
+}
+
+
+
+body{
+    background-color: #f0f2f5;
+}
+
+.ng-valid:not(form) .ng-touched{
+    border-left: 2px solid greenyellow;
+}
+
+.ng-invalid:not(form) .ng-touched{
+    border-left: 2px solid rgb(255, 47, 47);
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,16 @@
+<div class="contenedor" >
+    <img class="barra" src="https://i.imgur.com/yP4yPne.png" alt="" width="30px">
+    <button class="btn-ver-web">Ver Web</button>
+    <div class="div-info-administrador" (click)="openModalLogout()">
+        <div class="img-contenedor">
+            <img [src]= [userData?.foto] alt="">
+        </div>
+        <div class="info">
+            <p class="nombre">{{userData?.nombre}}</p>
+            <p class="rol">{{userData?.rol}}</p>
+            
+        </div>
+        <img class="flecha" src="https://i.imgur.com/sqGc0ec.png" alt="">
+        <app-modal-logout *ngIf="isModalLogoutVisible"></app-modal-logout>
+    </div>
+</div>

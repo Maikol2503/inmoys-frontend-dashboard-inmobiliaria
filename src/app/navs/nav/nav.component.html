@@ -1,0 +1,25 @@
+<div class="nav-container-padre">
+    <p class="logo">inmoYS</p>
+    <ul class="lista">
+      <li class="btn-home" routerLink="/inicio" [ngClass]="{'ruta_activa': rutaActiva === '/inicio'}">
+        <fa-icon [icon]="['fas', 'th']" style="font-size: 20px;"></fa-icon>
+        <p>Home</p>
+      </li>
+      <li class="btn-publicar-inmueble" routerLink="/publicar-propiedad" [ngClass]="{'ruta_activa': rutaActiva === '/publicar-propiedad'}">
+        <fa-icon [icon]="['fas', 'plus']" style="font-size: 20px;"></fa-icon>
+        <p>Publicar inmueble</p>
+      </li>
+      <li class="btn-publicar-inmueble" routerLink="/propiedad/todos/todos" [ngClass]="{'ruta_activa': rutaActiva === '/propiedad/todos/todos'}">
+        <fa-icon [icon]="['fas', 'list']" style="font-size: 20px;"></fa-icon>
+        <p>Ver Todos Lo Inmuebles</p>
+      </li>
+      <li class="btn-publicar-inmueble" routerLink="/nuevo-contrato" [ngClass]="{'ruta_activa': rutaActiva === '/nuevo-contrato'}">
+        <fa-icon [icon]="['fas', 'plus']" style="font-size: 20px;"></fa-icon>
+        <p>Nuevo Contrato</p>
+      </li>
+      <li class="btn-publicar-inmueble" routerLink="/contratos" [ngClass]="{'ruta_activa': rutaActiva === '/contratos'}">
+        <fa-icon [icon]="['fas', 'file-contract']" style="font-size: 20px;"></fa-icon>
+        <p>Ver Contratos</p>
+      </li>
+    </ul>
+  </div>

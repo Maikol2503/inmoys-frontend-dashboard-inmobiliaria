@@ -1,0 +1,51 @@
+<button class="btn-volver" (click)="atras()"><img width="100%" src="https://cdn-icons-png.flaticon.com/128/507/507257.png" alt=""></button>
+<input
+    class="buscador"
+    type="text"
+    placeholder="Buscar por SKU"
+    (input)="onSearch($event)"  />
+
+<div class="cards">
+  <div class="card" *ngFor="let propiedad of dataPropiedad">
+    <div class="imagenes">
+      <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
+        <swiper-slide class="splide_slide" *ngFor="let imagen of propiedad.image">
+           <img class="imagen" [src]="getImageUrl(propiedad.id_property, imagen)" alt="Imagen de la propiedad">
+        </swiper-slide>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+     </swiper-container>
+    </div>
+    <div class="data-propiedad" [routerLink]="['/ver-propiedad', propiedad.id_property]">
+      <div class="identificadores">
+        <p><strong>ID:</strong> {{propiedad.id_property}} | <strong>SKU:</strong> {{propiedad.sku}}</p>
+      </div>
+      <div class="ubicacion">
+        <p>{{propiedad.ciudad}}, {{propiedad.provincia}}, {{propiedad.zona}}, {{propiedad.nombreCalle}} {{propiedad.numeroCalle}}, {{propiedad.planta}}{{propiedad.puerta}} </p>
+      </div>
+      <p class="transaccion">{{propiedad.transaccion}}</p>
+      <p class="precio">{{propiedad.precio}}€</p>
+      <p class="disponibilidad" [ngClass]="{'disponible': propiedad.disponibilidad === 'disponible'}">
+        Disponibilidad: {{propiedad.disponibilidad}}
+      </p>
+    </div>
+    <div class="data-propietario">
+      <div class="nombre">
+        <p>{{propiedad.nombre}} {{propiedad.apellido}}</p>
+      </div>
+      <div class="documento">
+        <img src="https://i.imgur.com/Spo7qLF.png" alt=""><p>{{propiedad.documento}}</p>
+      </div>
+      <div class="contacto">
+        <div class="item">
+          <img src="https://i.imgur.com/bIcpo8F.png" alt="">
+          <p>{{propiedad.telefono}}</p>
+        </div>
+        <div class="item">
+          <img src="https://i.imgur.com/obWPaPg.png" alt="">
+          <p>{{propiedad.correo}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

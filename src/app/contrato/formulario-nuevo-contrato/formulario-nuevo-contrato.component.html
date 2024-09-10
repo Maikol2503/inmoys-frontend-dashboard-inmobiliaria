@@ -1,0 +1,93 @@
+<div class="contenedor">
+  <div class="header">
+    
+  </div>
+  <div class="formulario">
+      <p>{{alertSkuNoValido}}</p>
+      <form (ngSubmit)="onSubmit(nuevaPropiedadForm)" #nuevaPropiedadForm="ngForm">
+        <div class="inputs">
+          <div class="form-group">
+            <label for="nombreCliente">Nombre arrendador</label>
+            <input
+              type="text"
+              id="nombreCliente"
+              class="form-control"
+              name="nombre"
+              ngModel
+              required
+            />
+          </div>
+    
+          <div class="form-group">
+            <label for="apellidoCliente">Apellidos arrendador:</label>
+            <input
+              type="text"
+              id="apellidoCliente"
+              class="form-control"
+              name="apellido"
+              ngModel
+              required
+            />
+          </div>
+    
+    
+          <div class="form-group">
+            <label for="documentoCliente">Documento arrendador:</label>
+            <input
+              type="text"
+              id="documentoCliente"
+              class="form-control"
+              name="documento"
+              ngModel
+              required
+            />
+          </div>
+    
+    
+          <div class="form-group">
+            <label for="telefono">telefono arrendador</label>
+            <input
+              type="text"
+              id="telefono"
+              class="form-control"
+              name="telefono"
+              ngModel
+              required
+            />
+          </div>
+    
+    
+          <div class="form-group">
+            <label for="correo">Correo arrendador:</label>
+            <input
+              type="text"
+              id="correo"
+              class="form-control"
+              name="correo"
+              ngModel
+              required
+            />
+          </div>
+    
+          <div class="form-group">
+            <label for="property_sku">sku propiedad:</label>
+            <input
+              type="text"
+              id="property_sku"
+              class="form-control"
+              name="property_sku"
+              ngModel
+              required
+            />
+          </div>
+        </div>
+       
+    
+    
+          <button type="submit" class="btn-publicar-contrato" [disabled]="!nuevaPropiedadForm.valid">
+            Publicar
+          </button>
+    </form>
+  </div>
+</div>
+

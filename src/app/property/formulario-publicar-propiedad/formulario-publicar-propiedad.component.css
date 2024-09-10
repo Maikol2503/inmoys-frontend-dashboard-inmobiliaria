@@ -1,0 +1,342 @@
+
+button.btn.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 15px 30px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  position: absolute;
+  top: -75px;
+  right: 0px;
+  width: auto;
+}
+
+button.btn.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+button.btn.btn-primary:disabled {
+  background-color: #c0c0c0;
+  cursor: not-allowed;
+}
+
+
+/* formulario */
+.nuevo-anuncio-formulario{
+    width: 100%;
+    margin-top: 80px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.nuevo-anuncio-formulario form{
+    display: flex;
+    gap: 15px;
+    width: 100%; 
+}
+
+.container-data-propiedad{
+  width: 70%;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: rgba(201, 205, 208, 0.275) 0px 1px 4px;
+  border-radius: 10px;
+}
+
+
+/* inputs */
+.data-propiedad .inputs{
+  margin-top: 40px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #555;
+}
+
+
+
+/* caracteristicas adicionales */
+.caracteristicas-adicionales{
+  margin-top: 60px;
+}
+
+.checkbox-group{
+    margin-top: 10px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.checkbox-group .check{
+  width: 100%;
+}
+
+.checkbox-group label{
+  background-color: #f3f3f3;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+.checkbox-group input[type="checkbox"] {
+  display: none; 
+}
+
+
+
+
+/* ubicacion */
+.ubicacion{
+  margin-top: 20px;
+}
+.inputs-ubicacion{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px 20px;
+  
+}
+
+
+/* datos economicos */
+.datos-economicos{
+  margin-top: 20px;
+}
+
+
+.inputs-datos-economicos{
+ margin-top: 20px;
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 0px 20px;
+
+}
+
+
+
+/* datos propiedad */
+.data-propiedad{
+  margin-top: 20px;
+}
+
+.inputs-data-propiedad{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0px 20px;
+ 
+}
+
+
+
+
+/* descripcion */
+
+.descripcion{
+  margin-top: 10px;
+}
+
+input,
+textarea,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  resize:vertical ;
+ 
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+
+
+
+
+
+/* imagenes */
+.imagenes{
+  margin-top: 60px;
+}
+.image-preview-container {
+  margin-top: 20px;
+  position: relative;
+}
+
+.image-preview-container h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.image-preview {
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 0px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #d1d1d1;
+}
+
+.btn-eliminar-foto{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  color: red;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px;
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* DATA PROPIETARIO */
+.data-propietario{
+  box-shadow: rgba(201, 205, 208, 0.275) 0px 1px 4px;
+  padding: 20px;
+  background-color: #ffffff;
+  width: 30%;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.div-inputs-datos-cliente{
+ margin-top: 40px;
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
+
+.div-inputs-datos-cliente input{
+width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+  .nuevo-anuncio-formulario {
+    padding: 10px;
+  }
+}

@@ -1,0 +1,24 @@
+.container-modal-logout{
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    position: absolute;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 200px;
+    right: -20px;
+    top: 60px;
+    z-index: 1000;
+}
+
+/* .cerrar{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+} */
+
+.item{
+    width: 100%;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    padding: 10px 0px;
+}

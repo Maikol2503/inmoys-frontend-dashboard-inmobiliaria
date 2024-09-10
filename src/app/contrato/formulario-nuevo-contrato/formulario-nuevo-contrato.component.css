@@ -1,0 +1,58 @@
+
+.ruta_activa{
+    font-weight: bold;
+    background-color: #daedff !important;
+    color: #0059a8 !important;
+}
+
+
+.contenedor{
+    margin-top: 40px;
+}
+
+.formulario form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(201, 205, 208, 0.275) 0px 1px 4px;
+}
+
+.formulario form .inputs{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    padding-top: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+/* descripcion */
+input,
+textarea,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+  
+
+.btn-publicar-contrato{
+    display: block;
+    width: auto;
+    padding: 15px 30px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 30px;
+}

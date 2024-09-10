@@ -1,0 +1,65 @@
+.nav-container-padre{
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    background-color: white;
+    padding: 20px 5px;
+}
+
+.ruta_activa{
+    font-weight: bold;
+    background-color: #daedff !important;
+    color: #0059a8 !important;
+}
+
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+
+.nav-container-padre .lista{
+    cursor: pointer;
+    width: 100%;
+    margin-top: 70px;
+}
+
+
+.nav-container-padre .lista img{
+    width: 20px;
+    height: 100%;
+    object-fit: contain;
+}
+
+.nav-container-padre .lista p{
+    margin-left: 10px;
+}
+
+.nav-container-padre .lista li{
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    margin-top: 0px;
+    border-radius: 5px;
+    color: rgb(129, 129, 129);
+    font-size: 16px;
+}
+
+
+
+
+.nav-container-padre .btn-home{
+    /* background-color: var(--color-1);
+    border-radius: 15px;
+    color: #ffffff; */
+}
+
+
+.nav-container-padre .btn-publicar-inmueble{
+    /* border: 2px solid var(--color-1);
+    border-radius: 15px; */
+}
+

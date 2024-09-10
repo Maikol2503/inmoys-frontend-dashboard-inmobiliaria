@@ -1,0 +1,15 @@
+.contrato-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .cliente-info, .propiedad-info, .propietario-info {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(250, 250, 250);
+  }

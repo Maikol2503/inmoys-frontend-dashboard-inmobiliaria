@@ -1,0 +1,114 @@
+.contenedor{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0px;
+    border-radius: 5px;
+    margin-top: 6px;
+    box-shadow: rgba(201, 205, 208, 0.275) 0px 1px 4px;
+    z-index: 1000;
+}
+
+.barra{
+    width: 28px;
+    display: none;
+}
+
+.btn-ver-web{
+    padding: 0 20px;
+    height: 25px;
+    border: 2px solid var(--color-1);
+    color: var(--color-1);
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0);
+}
+
+
+.div-info-administrador{
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.div-info-administrador .img-contenedor{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    border: 1px solid #aaaaaa;
+    overflow: hidden;
+}
+
+.div-info-administrador .img-contenedor img{
+    width: 100%;
+    height: 100%;
+}
+
+.div-info-administrador .info{
+    margin-left: 10px;
+   
+}
+
+.div-info-administrador .nombre{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+.div-info-administrador .rol{
+    font-size: 12px;
+    color: rgb(93, 93, 93);
+    font-weight: 700;
+}
+
+
+.div-info-administrador .flecha{
+    width: 12px;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:700px){
+    .barra{
+        display: block;
+    }
+    .btn-logout{
+        margin-left: 0px;
+    }
+
+    .div-info-administrador .nombre{
+        font-weight: bold;
+        font-size: 14px;
+    }
+    
+    
+    .div-info-administrador .rol{
+        font-size: 10px;
+        color: rgb(93, 93, 93);
+        font-weight: 700;
+    }
+    
+    
+    .div-info-administrador .flecha{
+        width: 12px;
+        margin-left: 10px;
+    }
+}

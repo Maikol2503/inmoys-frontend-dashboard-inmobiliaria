@@ -1,0 +1,13 @@
+
+<div class="contendor-padre">
+    <div class="logo">
+        
+    </div>
+    <p class="eslogan">inmoYS</p>
+    <form class="formLogin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <p style="color: red;">{{loginError}}</p>
+        <input class="input-email" type="text" formControlName="email" placeholder="Email">
+        <input class="input-password" type="password" formControlName="password" placeholder="Password">
+        <button class="btn-submit" type="submit">LOGIN</button>
+    </form>
+</div>

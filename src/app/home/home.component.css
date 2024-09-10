@@ -1,0 +1,217 @@
+
+.ruta_activa{
+    font-weight: bold;
+    background-color: #daedff !important;
+    color: #0059a8 !important;
+}
+
+
+.sku{
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #b6b6b6;
+}
+
+/* header */
+.header{
+    margin-top: 20px;
+    width:100%;
+    height: 100px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.header .lista{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.header h2{
+    font-size: 30px;
+}
+
+.header p{
+    margin-top: 10px;
+}
+
+.header .lista .item{
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: rgba(149, 157, 165, 0.623) 0px 8px 24px;
+    cursor: pointer;
+}
+
+.header .lista .item:hover{
+    scale: 1.01;
+    transition: .2s;
+    filter: brightness(1.1);
+    
+}
+
+
+.container-propiedades-recientes{
+    
+    width: 100%;
+    /* display: flex;
+    flex-wrap: wrap; */
+    gap: 20px;
+    justify-content: flex-start;
+    margin-top: 50px;
+}
+
+.cards{
+
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 0 50px 0;
+}
+
+
+
+.card{
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0px;
+    background-color: #ffffff;
+    box-shadow: rgba(201, 205, 208, 0.275) 0px 1px 4px;
+    position: relative;
+    padding: 10px;
+}
+
+.card .transaccion{
+    color: #006cb3;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+.splide{
+    width: 100%;
+    height:350px;
+    position: relative;
+    visibility: visible;
+}
+
+.mySwiper{
+    height: 100%;
+}
+
+.splide_slide{
+
+height: 100% ;
+}
+
+
+.swiper-button-next, .swiper-button-prev {
+    height: var(--swiper-navigation-size);  
+    color: var(--swiper-navigation-color,var(--swiper-theme-color));
+}
+
+.imagen{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px 0px 0 0;
+}
+
+
+.card .info{
+    padding: 5px 0;
+    
+}
+
+
+.info .iconos{
+    display: flex;
+    justify-content: flex-start;
+    height:40px;
+    margin-top: 5px;
+}
+
+.info .iconos img{
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    border: 1px solid rgb(182, 182, 182);
+    padding: 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.info .titulo{
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+.info .precio{
+    font-size: 25px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.info .precio .logo-euro{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.info .caracteristicas{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+.card .footer{
+    border-top: 1px solid rgb(235, 235, 235);
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+
+.btn-ver{
+    background-color: none;
+    background-color: var(--color-2);
+    padding: 7px 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+
+.btn-eliminar{
+    height: 20px;
+    background-color: rgba(0, 255, 255, 0);
+    float: right;
+    color: red;
+}
+
+
+.btn-logout{
+    padding: 10px;
+    background-color: rgba(255, 222, 173, 0);
+}
+
+
+h1{
+    margin-top: 30px;
+    color: rgb(80, 80, 80);
+}
+
+
+.fecha{
+    font-size: 12px;
+    margin-top: 10px;
+}
