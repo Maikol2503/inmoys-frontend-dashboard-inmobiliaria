@@ -1,4 +1,24 @@
 
+
+.header{
+  display: flex;
+}
+
+.destacado-div{
+  background-color: #eef0f3;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  width: auto;
+}
+
+.destacado-div input{
+ width: auto;
+}
+
 button.btn.btn-primary {
   display: block;
   width: 100%;

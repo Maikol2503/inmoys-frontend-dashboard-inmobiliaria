@@ -106,6 +106,8 @@
                 [(ngModel)]="oficinaData.consumo" 
                 (change)="onFormChange()" 
                 required>
+              <option value="sinValor">Ninguno</option>
+              <option value="en tramite">En tramite</option>
               <option value="a">A</option>
               <option value="b">B</option>
               <option value="c">C</option>
@@ -126,6 +128,8 @@
                 [(ngModel)]="oficinaData.emisiones" 
                 (change)="onFormChange()" 
                 required>
+              <option value="sinValor">Ninguno</option>
+              <option value="en tramite">En tramite</option>
               <option value="a">A</option>
               <option value="b">B</option>
               <option value="c">C</option>
@@ -147,6 +151,7 @@
                 [(ngModel)]="oficinaData.certificadoEnergetico" 
                 (change)="onFormChange()" 
                 required>
+              <option value="sinValor">Ninguno</option>
               <option value="a">A</option>
               <option value="b">B</option>
               <option value="c">C</option>

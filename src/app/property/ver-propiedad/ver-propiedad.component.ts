@@ -6,8 +6,8 @@ import { PropertiesService } from '../../services/dom/properties/properties.serv
 
 
 interface ImagePreview {
-  id_image: any | null;
-  image_name: string;
+  id: any | null;
+  image: string;
 }
 
 @Component({
@@ -40,8 +40,8 @@ ngOnInit(): void {
           if (this.propertiesData.image) {
             this.imagePreviews = this.propertiesData.image.map(img => {
               return {
-                id_image: img.id_image,
-                image_name: `${img.image_name}`
+                id: img.id,
+                image: `${img.image}`
               };
             });
           }
@@ -65,7 +65,7 @@ getImageUrl(imagen: any): string {
     return imagen; // Retornar directamente la imagen en Base64
   } else {
     // Retornar la URL completa construida con la base URL y el ID de la propiedad
-    return `${this.baseUrl}${this.propertyId}/${imagen}`;
+    return `${this.baseUrl}${this.propertiesData.sku}/${imagen}`;
   }
 }
 }

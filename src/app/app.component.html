@@ -3,7 +3,7 @@
         
         <app-nav *ngIf="userLoginOn"></app-nav>
     </div>
-    <div class="contenido" [ngStyle]="{'padding': userLoginOn ? '0px 20px' : '0'}">
+    <div class="contenido" [ngStyle]="{'padding': userLoginOn ? '0px 40px' : '0'}">
         <app-barra-superior *ngIf="userLoginOn" ></app-barra-superior>
         <router-outlet ></router-outlet>
     </div>

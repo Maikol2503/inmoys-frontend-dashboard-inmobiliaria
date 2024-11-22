@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -12,11 +12,11 @@ import { FormOficinaComponent } from './form-oficina/form-oficina.component';
 import { NavComponent } from '../../navs/nav/nav.component';
 import { PropertiesService } from '../../services/dom/properties/properties.service';
 // import { faWarehouse  } from '@fortawesome/free-solid-svg-icons';
-
+import { v4 as uuidv4 } from 'uuid';
 
 interface ImagePreview {
-  id_image: any | null;
-  image_name: string;
+  id: any | null;
+  image: string;
 }
 
 @Component({
@@ -26,7 +26,7 @@ interface ImagePreview {
   templateUrl: './formulario-publicar-propiedad.component.html',
   styleUrl: './formulario-publicar-propiedad.component.css'
 })
-export class FormularioPublicarPropiedadComponent {
+export class FormularioPublicarPropiedadComponent implements OnDestroy {
   // Propiedad para almacenar las imágenes seleccionadas
   imagenes: File[] = [];
   imagePreviews: ImagePreview[] = [];
@@ -36,7 +36,10 @@ export class FormularioPublicarPropiedadComponent {
   disponibilad: string = 'disponible'
   tipoPropiedad = ''
   totalImageSizeMB: number = 0
-  
+  isSubmitButtonDisabled: boolean = true;
+  myUUID!: string;
+
+
   constructor(private library: FaIconLibrary, 
               private http:HttpClient, 
               private PropertyService:PropertiesService,  
@@ -45,6 +48,9 @@ export class FormularioPublicarPropiedadComponent {
 
                 library.addIcons(faPlus, faWarehouse, faWaterLadder, faElevator, faDumbbell, faFan, faFire, faHouse, faTreeCity, faShirt );
               }
+  ngOnDestroy(): void {
+    this.dataPropiedad = {}
+  }
 
   // Convierte bytes a megabytes
   private bytesToMB(bytes: number): number {
@@ -75,11 +81,7 @@ export class FormularioPublicarPropiedadComponent {
       );
       
       const dataGeneral = {
-          nombre: form.value.nombre,
-          apellido: form.value.apellido,
-          documento: form.value.documento,
-          correo: form.value.correo,
-          telefono: form.value.telefono,
+          destacado: form.value.destacado || false,
           tipo: this.tipoPropiedad,
           transaccion: form.value.transaccion,
           precio: form.value.precio,
@@ -92,12 +94,15 @@ export class FormularioPublicarPropiedadComponent {
           puerta: form.value.puerta || '',
           planta: form.value.planta || null,
           disponibilidad: this.disponibilad,
-          // tamano: form.value.tamano,
           descripcion: form.value.descripcion,
           image: this.imageness(this.imagePreviews),
           
       };
-
+      
+      // Dependiendo del tipo de propiedad, se construye un objeto 'detalles' específico para cada tipo. 
+      // Cada propiedad (vivienda, oficina, terreno, etc.) tiene características y detalles únicos, por lo que 
+      // se llama a un método especializado (por ejemplo, `createData.vivienda`) para construir los detalles específicos 
+      // de cada tipo. Esto garantiza que la estructura de 'dataPropiedad' se adapta correctamente a cada tipo de propiedad.
       if (dataGeneral.tipo === 'vivienda'){
         const viviendaData = this.createData.vivienda(this.viviendaDataReceived)
         this.dataPropiedad = {...dataGeneral, 'detalles':viviendaData}
@@ -121,10 +126,12 @@ export class FormularioPublicarPropiedadComponent {
         this.dataPropiedad = {...dataGeneral, 'detalles':trasteroData}
       }
 
+      console.log('data Enviada Al servidor', this.dataPropiedad)
+
       this.PropertyService.addProperty(this.dataPropiedad).subscribe({
         next: () => {
           // Redirigir a la página de inicio
-          this.router.navigate(['/inicio']); // Ajusta la ruta según tu configuración
+          this.router.navigate(['/inicio']);
         },
         error: (err) => {
           console.error('Error al actualizar la propiedad', err);
@@ -135,25 +142,19 @@ export class FormularioPublicarPropiedadComponent {
 
 
 generateTempId(): string {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let tempId = '';
-    for (let i = 0; i < 4; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      tempId += characters[randomIndex];
-    }
-    return tempId;
+  return uuidv4().slice(0, 4);
 }
 
 
-  // Función para procesar las imágenes
+// Función para procesar las imágenes
 imageness(data: ImagePreview[]): void {
   // Limpiar el array antes de agregar nuevos elementos
   const a:any = [];
   // Iterar sobre cada elemento en el array de datos
   data.forEach((element: ImagePreview) => {
     a.push({
-      "id_image": element.id_image,
-      "image_name": element.image_name
+      "id": element.id,
+      "image": element.image
     }); // Agregar el nombre de la imagen al array 'a'
   });
   return a
@@ -168,6 +169,9 @@ onFileSelected(event: Event): void {
   
       // Añadir las nuevas imágenes a la lista existente de imágenes
       this.imagenes = [ ...newFiles];
+
+      // Actualizar el estado del botón de envío
+      this.isSubmitButtonDisabled = this.imagenes.length === 0;
   
       // Calcular el tamaño total de las imágenes
       this.totalImageSizeMB = this.imagenes.reduce((total, file) => total + file.size, 0);
@@ -179,8 +183,8 @@ onFileSelected(event: Event): void {
         reader.onload = () => {
           const base64Data = reader.result as string;
           const imagePreview: ImagePreview = {
-            id_image: this.generateTempId(),  // Generar un ID temporal
-            image_name: base64Data
+            id: this.generateTempId(),  // Generar un ID temporal
+            image: base64Data
           };
           this.imagePreviews.push(imagePreview);
         };
@@ -191,7 +195,10 @@ onFileSelected(event: Event): void {
 
 
 delete(id:any){
-  this.imagePreviews = this.imagePreviews.filter(image => image.id_image !== id);
+  this.imagePreviews = this.imagePreviews.filter(image => image.id !== id);
+  // // Actualizar el estado del botón de envío
+  this.isSubmitButtonDisabled = this.imagePreviews.length === 0;
+
 }
 
 

@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.486), rgba(0, 0, 0, 0.47)), url("../../../assets/fondo1.jpg");
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.486), rgba(0, 0, 0, 0.47)), url("../../../assets/fondo1.jpg"); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -18,14 +18,15 @@
     background-size: cover;
     height: 150px;
     width: 150px;
-    background-color: aliceblue;
+    background-color: rgb(40, 40, 40);
     border-radius: 100%;
+    color: black;
 }
 
 .eslogan{
     font-size: 35px;
     margin-top: 10px;
-    color: #ffffff;
+    color: #1c1c1c;
     font-weight: bold;
 }
 
@@ -56,6 +57,7 @@
     margin-bottom: 15px;
     background-color: rgb(255, 255, 255);
     font-size:16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .input-password{
@@ -65,6 +67,7 @@
     margin-bottom: 15px;
     background-color: rgb(255, 255, 255);
     font-size:16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 
@@ -75,6 +78,7 @@
     background-color: #54657d;
     color: white;
     font-size: 16px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .btn-submit:hover{

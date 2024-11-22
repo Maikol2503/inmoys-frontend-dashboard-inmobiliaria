@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.loginForm.valid){
+     
       this.loginService.login(this.loginForm.value).subscribe({
         next:(token)=>{
           console.log(token)
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
           console.info("login completo")
           this.router.navigateByUrl('/inicio');
           this.loginForm.reset();
+          console.log('uiggyu')
         }
       })
 

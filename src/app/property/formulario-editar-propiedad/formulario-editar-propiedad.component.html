@@ -5,14 +5,18 @@
   <form (ngSubmit)="onSubmit(editarPropiedadForm)" #editarPropiedadForm="ngForm">
     <div class="container-data-propiedad">
 
-        <div class="header">
-          <h2></h2>
+      <div class="header">
+        <!-- Destacado -->
+        <div class="destacado-div">
+          <label for="destacado" >Destacado</label>
+          <input type="checkbox" id="destacado" name="destacado" [(ngModel)]="propertiesData.destacado" />
         </div>
+      </div>
 
 
 
 
-
+        
         <!-- Disponibilidad inmueble-->
         <div class="form-group">
           <label for="disponibilidad">Disponibilidad inmueble:</label>
@@ -307,16 +311,16 @@
             />
           </div>
 
-          <div *ngIf="totalImageSizeMB > 0">
+          <!-- <div *ngIf="totalImageSizeMB > 0">
             <p>Tamaño total de las imágenes seleccionadas: {{ totalImageSizeMB | number: '1.2-2' }} MB</p>
-          </div>
+          </div> -->
 
           <div class="image-preview-container" *ngIf="imagePreviews.length > 0">
             <h3>Previsualización de Imágenes:</h3>
             <div class="image-grid">
               <div class="image-preview" *ngFor="let img of imagePreviews">
-                <img [src]="getImageUrl(img.image_name)"  alt="Previsualización de imagen" />
-                <button type="button" class="btn-eliminar" (click)="delete(img.id_image)">ELIMINAR</button>
+                <img [src]="getImageUrl(img.image)"  alt="Previsualización de imagen" />
+                <button type="button" class="btn-eliminar" (click)="delete(img.id, img.image, property_sku)">ELIMINAR</button>
               </div>
             </div>
           </div>
@@ -326,13 +330,13 @@
     </div>
 
 
-    <div class="data-propietario">
+    <!-- <div class="data-propietario">
       <div class="header">
         <h2>Datos del propietario</h2>
-      </div>
-      <div class="div-inputs-datos-cliente">
+      </div> -->
+      <!-- <div class="div-inputs-datos-cliente"> -->
         <!-- Campo nombre -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="nombre">nombre:</label>
           <input
             type="text"
@@ -342,10 +346,10 @@
             [(ngModel)]="propertiesData.nombre"
             required
           />
-        </div>
+        </div> -->
 
         <!-- Campo apellido -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="apellido">apellido:</label>
           <input
             type="text"
@@ -355,12 +359,12 @@
             [(ngModel)]="propertiesData.apellido"
             required
           />
-        </div>
+        </div> -->
 
         
 
         <!-- Campo documento -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="documento">documento:</label>
           <input
             type="text"
@@ -370,10 +374,10 @@
             [(ngModel)]="propertiesData.documento"
             required
           />
-        </div>
+        </div> -->
 
         <!-- Campo email -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="correo">correo:</label>
           <input
             type="text"
@@ -383,10 +387,10 @@
             [(ngModel)]="propertiesData.correo"
             required
           />
-        </div>
+        </div> -->
 
         <!-- Campo telefono -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="telefono">telefono:</label>
           <input
             type="text"
@@ -400,7 +404,7 @@
         
       </div>
 
-    </div>
+    </div> -->
 
       <!-- Botón Enviar -->
       <button type="submit" class="btn btn-primary" [disabled]="!editarPropiedadForm.valid">

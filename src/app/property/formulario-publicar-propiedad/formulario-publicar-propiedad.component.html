@@ -3,10 +3,16 @@
 <div class="nuevo-anuncio-formulario">
     <form (ngSubmit)="onSubmit(nuevaPropiedadForm)" #nuevaPropiedadForm="ngForm">
       <div class="container-data-propiedad">
+        
 
           <div class="header">
-            <h2></h2>
+            <!-- Destacado -->
+            <div class="destacado-div">
+              <label for="destacado" >Destacado</label>
+              <input type="checkbox" id="destacado" name="destacado"  ngModel />
+            </div>
           </div>
+
 
           <!-- Campo Ubicación -->
           <div class="ubicacion">
@@ -24,6 +30,7 @@
                   required
                 />
               </div>
+              
               <!-- ciudad -->
               <div class="form-group">
                 <label for="ciudad">Ciudad:</label>
@@ -109,7 +116,9 @@
                   ngModel
                 />
               </div>
+              
             </div>
+
           </div>
           
 
@@ -237,8 +246,8 @@
             <h3>Previsualización de Imágenes:</h3>
             <div class="image-grid">
               <div class="image-preview" *ngFor="let img of imagePreviews">
-                <button class="btn-eliminar-foto" (click)="delete(img.id_image)">Eliminar</button>
-                <img [src]="img.image_name"  alt="Previsualización de imagen" />
+                <button class="btn-eliminar-foto" (click)="delete(img.id)" type="button">Eliminar</button>
+                <img [src]="img.image"  alt="Previsualización de imagen" />
               </div>
             </div>
           </div>
@@ -251,14 +260,14 @@
 
 
   
-      <div class="data-propietario">
+      <!-- <div class="data-propietario">
         <div class="header">
           <h2>Datos del propietario</h2>
         </div>
-        <div class="div-inputs-datos-cliente">
+        <div class="div-inputs-datos-cliente"> -->
           
           <!-- Campo nombre -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input
               type="text"
@@ -268,10 +277,10 @@
               ngModel
               required
             />
-          </div>
+          </div> -->
   
           <!-- Campo apellido -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="apellido">Apellido:</label>
             <input
               type="text"
@@ -281,12 +290,12 @@
               ngModel
               required
             />
-          </div>
+          </div> -->
   
           
   
           <!-- Campo documento -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="documento">Documento:</label>
             <input
               type="text"
@@ -296,10 +305,10 @@
               ngModel
               required
             />
-          </div>
+          </div> -->
   
           <!-- Campo email -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="correo">Correo:</label>
             <input
               type="text"
@@ -309,10 +318,10 @@
               ngModel
               required
             />
-          </div>
+          </div> -->
   
           <!-- Campo telefono -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="telefono">Telefono:</label>
             <input
               type="text"
@@ -325,7 +334,7 @@
           </div>
           
         </div>
-      </div>
+      </div> -->
       
       
       
@@ -334,7 +343,7 @@
      
   
       <!-- Botón Enviar -->
-      <button type="submit" class="btn btn-primary" [disabled]="!nuevaPropiedadForm.valid">
+      <button type="submit" class="btn btn-primary" [disabled]="isSubmitButtonDisabled || !nuevaPropiedadForm.valid">
         Publicar
       </button>
     </form>

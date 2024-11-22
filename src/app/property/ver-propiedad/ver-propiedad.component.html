@@ -95,13 +95,13 @@
 
         <ul class="fotos-propiedad div2">
             <div class="image-preview" *ngFor="let img of imagePreviews">
-                <img  [src]="getImageUrl(img.image_name)"  alt="Previsualización de imagen" />
+                <img  [src]="getImageUrl(img.image)"  alt="Previsualización de imagen" />
             </div>
         </ul>
     </div>
     
 
-    <div class="data-propietario div3">
+    <!-- <div class="data-propietario div3">
         <h1>Datos del propietario</h1>
         <ul class="lista">
             <li class="item">Nombre: {{propertiesData.nombre}}</li>
@@ -110,7 +110,7 @@
             <li class="item">Telefono: {{propertiesData.telefono}}</li>
             <li class="item">Correo: {{propertiesData.correo}}</li>
         </ul>
-    </div>
+    </div> -->
     
 </div>
 

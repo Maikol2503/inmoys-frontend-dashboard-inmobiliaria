@@ -16,16 +16,16 @@ export class PropertiesService {
   public properties$: Observable<Propiedad[]> = this.propertiesSubject.asObservable();
   
   constructor(private http:HttpClient) { 
-    this.loadProperties();
+    // this.loadProperties();
   }
   private url = 'http://127.0.0.1:8000';
 
-  private loadProperties(): void {
-    this.get_properties_disponibles().subscribe(data => {
-      this.propertiesSubject.next(data);
-      console.log('entro en loadproperties')
-    });
-  }
+  // private loadProperties(): void {
+  //   this.get_properties_disponibles().subscribe(data => {
+  //     this.propertiesSubject.next(data);
+  //     console.log('entro en loadproperties')
+  //   });
+  // }
 
 
   get_propertie(id:number): Observable<Propiedad> {
@@ -37,24 +37,34 @@ export class PropertiesService {
     );
   }
 
-
-  get_properties_disponibles(): Observable<Propiedad[]> {
-    return this.http.get<Propiedad[]>(`${this.url}/get-properties-disponibles`).pipe(
+  
+  get_properties_disponibles(page:number, limit:number): Observable<Propiedad[]> {
+    return this.http.get<Propiedad[]>(`${this.url}/get-properties-disponibles`, {params:{page:page.toString(), limit:limit.toString()}}).pipe(
       tap(response => {
-        this.propertiesSubject.next(response);
+        // this.propertiesSubject.next(response);
       }),
       catchError(this.handleError)
     );
   }
 
 
-  get_properties(): Observable<Propiedad[]> {
-    return this.http.get<Propiedad[]>(`${this.url}/get-properties`).pipe(
+  get_properties(params:any): Observable<Propiedad[]> {
+    console.log(params, 'paranms')
+    return this.http.get<Propiedad[]>(`${this.url}/get-properties-filter`,{params}).pipe(
       tap(response => {
         // this.propertiesSubject.next(response);
       }),
       catchError(this.handleError)
     );
+  }
+
+  properties_count():Observable<any[]>{
+    return this.http.get<any[]>(`${this.url}/properties-count`).pipe(
+      tap(response =>{
+        console.log(response)
+      }),
+      catchError(this.handleError)
+    )
   }
 
 
@@ -73,9 +83,9 @@ export class PropertiesService {
     console.log(newProperty, 'newpropiedad')
     return this.http.post<any>('http://localhost:8000/api/publicar-propiedad/', newProperty).pipe(
       tap(response => {
-          console.log(response, 'response add properties')
-          const currentProperties = this.propertiesSubject.value;
-          this.propertiesSubject.next([...currentProperties, response]);
+          // console.log(response, 'response add properties')
+          // const currentProperties = this.propertiesSubject.value;
+          // this.propertiesSubject.next([...currentProperties, response]);
       }),
       catchError(this.handleError)
     );
@@ -90,26 +100,26 @@ export class PropertiesService {
 updateProperty(id: number, updatedProperty: any): Observable<Propiedad> {
   return this.http.put<Propiedad>(`${this.url}/editar-propiedad/${id}`, updatedProperty).pipe(
     tap((response: Propiedad) => {
-      console.log(response, 'response');
+      // console.log(response, 'response');
 
-      // Obtengo las propiedades almacenadas
-      const currentProperties = this.propertiesSubject.value;
+      // // Obtengo las propiedades almacenadas
+      // const currentProperties = this.propertiesSubject.value;
 
-      // Obtengo su índice (id_property es el campo en la propiedad)
-      const index = currentProperties.findIndex(property => property.id_property === id);
+      // // Obtengo su índice (id_property es el campo en la propiedad)
+      // const index = currentProperties.findIndex(property => property.id_property === id);
 
-      if (index > -1) {
-        // Si encuentra la propiedad, la actualiza
-        currentProperties[index] = response;
-        console.log(currentProperties, 'Propiedad actualizada');
-      } else {
-        // Si no encuentra la propiedad, la agrega al final
-        currentProperties.push(response);
-        console.log(currentProperties, 'Nueva propiedad agregada');
-      }
+      // if (index > -1) {
+      //   // Si encuentra la propiedad, la actualiza
+      //   currentProperties[index] = response;
+      //   console.log(currentProperties, 'Propiedad actualizada');
+      // } else {
+      //   // Si no encuentra la propiedad, la agrega al final
+      //   currentProperties.push(response);
+      //   console.log(currentProperties, 'Nueva propiedad agregada');
+      // }
 
-      // Actualizo el observable con las propiedades modificadas
-      this.propertiesSubject.next(currentProperties);
+      // // Actualizo el observable con las propiedades modificadas
+      // this.propertiesSubject.next(currentProperties);
     }),
     catchError(this.handleError)
   );
@@ -137,6 +147,12 @@ updateProperty(id: number, updatedProperty: any): Observable<Propiedad> {
     return this.properties$;
   }
 
+  deleteImage(idImagen: number, skuProperty: string): Observable<any> {
+    const url = `${this.url}/eliminar-imagen/${idImagen}/${skuProperty}`;
+    return this.http.delete(url).pipe(
+      catchError(this.handleError)
+    );
+  }
   
 
   private handleError(error: HttpErrorResponse) {

@@ -20,63 +20,78 @@
 </div>
 
 
-
 <div class="container-propiedades-recientes">
-    <!-- <h3>Publicados reientemente</h3> -->
-    <div class="cards">
-        <div class="card" *ngFor="let property of propertiesData"  >
-            <p class="sku">SKU {{property.sku}}</p>
+    <div *ngIf="mainLoadingActive" class="main-loading">
+        <svg version="1.1" id="L4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 40 60 16" enable-background="new 0 0 0 0" xml:space="preserve"><circle fill="currentColor" stroke="none" cx="6" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.1"/></circle><circle fill="currentColor" stroke="none" cx="26" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2"/></circle><circle fill="currentColor" stroke="none" cx="46" cy="50" r="6"><animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3"/></circle></svg>
+    </div>
+    <h3 class="titulo-p-recientes">Ultimas Publicaciones</h3>
+
+    <swiper-container  class="cards" space-between="40" slides-per-view="3.5" pagination="true">
+        <swiper-slide class="card" *ngFor="let property of propertiesData" >
+            <p class="sku">{{property.sku}}</p>
+            <p class="transaccion">{{property.transaccion}}</p>
+            <div class="splide">
+                <swiper-container [navigation]="{ nextEl: '.swiper-button-nex1t', prevEl: '.swiper-button-prev1' }" mousewheel-force-to-axis="true" class="mySwiper">
+                   <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
+                     
+                      <img class="imagen" [src]="getImageUrl(property.sku, imagen)" alt="Imagen de la propiedad">
+                   </swiper-slide>
+                   <div class="swiper-button-next1"></div>
+                   <div class="swiper-button-prev1"></div>
+                </swiper-container>
+             </div>
+             <div class="info" [routerLink]="['/ver-propiedad', property.id_property]">
+                <ul class="lista data-propiedad" >
+                    <li class="precio">{{property.precio}}<span class="logo-euro">€</span> </li>
+                    <li class="titulo">{{ property.tipo }} en {{ property?.ciudad }}, {{ property?.provincia }}, {{ property?.zona}}</li>
+                    <li *ngIf="property.tipo == 'vivienda'">
+                     <ul class="caracteristicas">
+                         <li class="item"><img class="icon" [src]="getImageUrl2('iconos', 'cama.png')" alt=""><p>{{property.detalles.habitaciones}} Dorm.</p></li>
+                         <li class="item"><img class="icon" [src]="getImageUrl2('iconos', 'tamano.png')" alt=""><p>{{property.detalles.tamano}}m²</p></li>
+                         <li class="item"><img class="icon" [src]="getImageUrl2('iconos', 'bano.png')" alt=""><p>{{property.detalles.banos}} <span>Baño</span><span *ngIf="isMoreThanOneBathroom(property)">s</span></p></li>
+                     </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="fecha">
+                <p>Publicado el {{property.fecha_creacion}}</p>
+            </div>
+        </swiper-slide>
+        <!-- <div class="swiper-button-next2"></div>
+        <div class="swiper-button-prev2"></div> -->
+    </swiper-container>
+
+    <!-- <div class="cards">
+        <div class="card" >
+            <p class="sku">{{property.sku}}</p>
+            <p class="transaccion">{{property.transaccion}}</p>
             <div class="splide">
                <swiper-container [navigation]="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" mousewheel-force-to-axis="true" class="mySwiper">
                   <swiper-slide class="splide_slide" *ngFor="let imagen of property.image">
                     
-                     <img class="imagen" [src]="getImageUrl(property.id_property, imagen)" alt="Imagen de la propiedad">
+                     <img class="imagen" [src]="getImageUrl(property.sku, imagen)" alt="Imagen de la propiedad">
                   </swiper-slide>
                   <div class="swiper-button-next"></div>
                   <div class="swiper-button-prev"></div>
                </swiper-container>
             </div>
-            <p class="transaccion">{{property.transaccion}}</p>
+            
             <div class="info" [routerLink]="['/ver-propiedad', property.id_property]">
                <ul class="lista data-propiedad" >
-                   <li >
-                       <ul class="iconos">
-                           <ng-container *ngIf="property.detalles.gimnasio">
-                               <li class="item"><img src="https://i.imgur.com/UfhIAC8.png" alt="Gimnasio"></li>
-                           </ng-container>
-                           <ng-container *ngIf="property.detalles.garaje">
-                               <li class="item"><img src="https://i.imgur.com/chs79Vc.png" alt="Garage"></li>
-                           </ng-container>
-                           <ng-container *ngIf="property.detalles.piscina">
-                               <li class="item"><img src="https://i.imgur.com/qZEo49Y.png" alt="Piscina"></li>
-                           </ng-container>
-                       </ul>
-                   </li>
-                   <li class="titulo">{{ property.tipo }} en {{ property?.ciudad }}, {{ property?.provincia }}, {{ property?.zona}}</li>
                    <li class="precio">{{property.precio}}<span class="logo-euro">€</span> </li>
+                   <li class="titulo">{{ property.tipo }} en {{ property?.ciudad }}, {{ property?.provincia }}, {{ property?.zona}}</li>
                    <li *ngIf="property.tipo == 'vivienda'">
-                       <ul class="caracteristicas">
-                           <li>{{property.detalles.habitaciones}} Hab</li>
-                           <li>{{property.detalles.tamano}}m²</li>
-                           <li>
-                              Planta {{property.detalles.planta}} {{property.detalles.orientacion}}
-                              <span *ngIf="property.detalles?.ascensor">con ascensor</span>
-                              <span *ngIf="!property.detalles?.ascensor">sin ascensor</span>
-                          </li>
-                          
-                       </ul>
+                    <ul class="caracteristicas">
+                        <li class="item"><img class="icon" [src]="getImageUrl2('iconos', 'cama.png')" alt=""><p>{{property.detalles.habitaciones}} Dorm.</p></li>
+                        <li class="item"><img class="icon" [src]="getImageUrl2('iconos', 'tamano.png')" alt=""><p>{{property.detalles.tamano}}m²</p></li>
+                        <li class="item"><img class="icon" [src]="getImageUrl2('iconos', 'bano.png')" alt=""><p>{{property.detalles.banos}} <span>Baño</span><span *ngIf="isMoreThanOneBathroom(property)">s</span></p></li>
+                    </ul>
                    </li>
                </ul>
-           </div>
-           <div class="footer">
-            <button class="btn-ver" [routerLink]="['/ver-propiedad', property.id_property]">Ver Propiedad</button>
-            <button class="btn-eliminar" (click)="delete(property.id_property)">Eliminar</button>
            </div>
            <div class="fecha">
             <p>Publicado el {{property.fecha_creacion}}</p>
            </div>
         </div>
-    </div>
-  
-  
+    </div> -->
 </div>

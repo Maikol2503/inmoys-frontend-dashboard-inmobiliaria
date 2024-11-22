@@ -17,8 +17,8 @@ import { PropertiesService } from '../../services/dom/properties/properties.serv
 
 
 interface ImagePreview {
-  id_image: any | null;
-  image_name: string;
+  id: any | null;
+  image: string;
 }
 
 @Component({
@@ -34,9 +34,11 @@ export class FormularioEditarPropiedadComponent implements OnInit {
   
 // propertiesData!:Propiedad;
 propertiesData: Propiedad = {} as Propiedad;
-imagenes: File[] = [];
+imagenesNuevasCargadas : File[] = [];
+property_sku = ''
 imagePreviews: ImagePreview[] = [];
 disponibilidad!:string
+destacado: boolean = false;
 piscina: boolean = false;
 trastero: boolean = false;
 garaje: boolean = false;
@@ -68,16 +70,17 @@ ngOnInit(): void {
   this.propertyId = Number(this.route.snapshot.paramMap.get('id')!);
 
   // Suscribirse a la lista de propiedades
-  this.PropertyService.get_properties().subscribe({
-    next: (data: Propiedad[]) => {
+  this.PropertyService.get_propertie(this.propertyId).subscribe({
+    next: (data:any) => {
       const id = Number(this.propertyId); 
-      this.propertiesData = data.find(property => property.id_property === id)!;
+      this.propertiesData = data;
+      this.property_sku = data.sku
       // Asegúrate de que `this.propertiesData.image` esté definido
       if (this.propertiesData && this.propertiesData.image) {
         this.imagePreviews = this.propertiesData.image.map(img => {
           return {
-            id_image: img.id_image,  // Asegúrate de que `img.id` esté disponible en tu API
-            image_name: `${img.image_name}`
+            id: img.id,  // Asegúrate de que `img.id` esté disponible en tu API
+            image: `${img.image}`
           };
         });
       }
@@ -118,10 +121,11 @@ async onSubmit(form: NgForm): Promise<void> {
   if (form.valid) {
     try {
       const base64Images = await Promise.all(
-        this.imagenes.map(file => this.fileToBase64(file))
+        this.imagenesNuevasCargadas .map(file => this.fileToBase64(file))
       );
 
       const postData = {
+        destacado: form.value.destacado || false,
         nombre: form.value.nombre,
         apellido: form.value.apellido,
         documento: form.value.documento,
@@ -136,6 +140,7 @@ async onSubmit(form: NgForm): Promise<void> {
         zona:form.value.zona,
         cp:form.value.cp,
         numeroCalle:form.value.numeroCalle,
+        nombreCalle:form.value.nombreCalle,
         planta: form.value.planta,
         puerta:form.value.puerta,
         disponibilidad: form.value.disponibilidad,
@@ -149,7 +154,7 @@ async onSubmit(form: NgForm): Promise<void> {
       this.PropertyService.updateProperty(this.propertyId, postData).subscribe({
         next: () => {
           // Redirigir a la página de inicio
-          this.router.navigate(['/inicio']); // Ajusta la ruta según tu configuración
+           this.router.navigate(['/inicio']); // Ajusta la ruta según tu configuración
         },
         error: (err) => {
           console.error('Error al actualizar la propiedad', err);
@@ -176,18 +181,44 @@ generateTempId(): string {
 
 
 
-// Función para procesar las imágenes
-imageness(data: ImagePreview[]): void {
+// // Función para procesar las imágenes
+// imageness(data: ImagePreview[]): void {
+//   // Limpiar el array antes de agregar nuevos elementos
+//   const a:any = [];
+//   // Iterar sobre cada elemento en el array de datos
+//   data.forEach((element: ImagePreview) => {
+//     a.push({
+//       "id":element.id,
+//       "image":element.image
+//     }); // Agregar el nombre de la imagen al array 'a'
+//   });
+//   return a
+// }
+
+
+
+imageness(data: ImagePreview[]): any[] {
   // Limpiar el array antes de agregar nuevos elementos
-  const a:any = [];
+  const imagenes_nuevas: any[] = [];
+  const imagenes_anteriores: any[] = [];
   // Iterar sobre cada elemento en el array de datos
   data.forEach((element: ImagePreview) => {
-    a.push({
-      "id_image":element.id_image,
-      "image_name":element.image_name
-    }); // Agregar el nombre de la imagen al array 'a'
+    // Comprobar si la imagen está en formato base64
+    if (element.image.startsWith("data:image/")) {
+      imagenes_nuevas.push({
+        "id": element.id,
+        "image": element.image
+      });
+    }
+    // Agregar solo si no es base64
+    else if (!element.image.startsWith("data:image/")) {
+      imagenes_anteriores.push({
+        "id": element.id,
+        "image": element.image
+      }); // Agregar solo si no es base64
+    }
   });
-  return a
+  return [{'imagenes_nuevas':imagenes_nuevas, 'imagenes_anteriores':imagenes_anteriores}];
 }
 
 
@@ -198,20 +229,20 @@ onFileSelected(event: Event): void {
     const newFiles = Array.from(fileInput.files);
 
     // Añadir las nuevas imágenes a la lista existente de imágenes
-    this.imagenes = [...this.imagenes, ...newFiles];
-
+    this.imagenesNuevasCargadas = [...newFiles];
+    // this.imagePreviews = []; 
     // Calcular el tamaño total de las imágenes
-    this.totalImageSizeMB = this.imagenes.reduce((total, file) => total + file.size, 0);
-    this.totalImageSizeMB = this.bytesToMB(this.totalImageSizeMB);
+    // this.totalImageSizeMB = this.imagenes.reduce((total, file) => total + file.size, 0);
+    // this.totalImageSizeMB = this.bytesToMB(this.totalImageSizeMB);
 
     // Previsualizar todas las imágenes
-    this.imagenes.forEach(file => {
+    this.imagenesNuevasCargadas.forEach(file => {
       const reader = new FileReader();
       reader.onload = () => {
         const base64Data = reader.result as string;
         const imagePreview: ImagePreview = {
-          id_image: this.generateTempId(),  // Generar un ID temporal
-          image_name: base64Data
+          id: this.generateTempId(),  // Generar un ID temporal
+          image: base64Data
         };
         this.imagePreviews.push(imagePreview);
       };
@@ -239,19 +270,39 @@ getImageUrl(imagen: any): string {
     return imagen; // Retornar directamente la imagen en Base64
   } else {
     // Retornar la URL completa construida con la base URL y el ID de la propiedad
-    return `${this.baseUrl}${this.propertyId}/${imagen}`;
+    return `${this.baseUrl}${this.propertiesData.sku}/${imagen}`;
   }
 }
 
  
 
 
+isBase64Image(data: string): boolean {
+  return data.startsWith("data:image/");
+}
 
-
-delete(id:any){
-
-  this.imagePreviews = this.imagePreviews.filter(image => image.id_image !== id);
+delete(id: number, image:string, skuProperty: string): void {
   
+  if(this.isBase64Image(image)){
+    this.imagePreviews = this.imagePreviews.filter(image => image.id !== id);
+    return
+  }
+  
+  // Llama al servicio para eliminar la imagen en el backend
+  this.PropertyService.deleteImage(id, skuProperty).subscribe({
+    next: () => {
+      // Si la eliminación es exitosa, elimina la imagen de la vista previa
+      this.imagePreviews = this.imagePreviews.filter(image => image.id !== id);
+      
+      // Actualizar el estado del botón de envío
+      // this.isSubmitButtonDisabled = this.imagePreviews.length === 0;
+
+      console.log(`Imagen con id ${id} eliminada exitosamente.`);
+    },
+    error: (err: any) => {
+      console.error('Error al eliminar la imagen:', err);
+    }
+  });
 }
 
 
