@@ -18,7 +18,8 @@ export class PropertiesService {
   constructor(private http:HttpClient) { 
     // this.loadProperties();
   }
-  private url = 'http://127.0.0.1:8000';
+  // private url = 'http://127.0.0.1:8000';
+  private url = 'https://inmoys-backend-inmobiliaria-1.onrender.com';
 
   // private loadProperties(): void {
   //   this.get_properties_disponibles().subscribe(data => {

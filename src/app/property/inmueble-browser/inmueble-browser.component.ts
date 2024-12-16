@@ -25,8 +25,8 @@ export class InmuebleBrowserComponent implements OnInit {
   dataPropertiesOriginal:any
   newPropertiesData: any
   filteredProperties: Propiedad[] = [];
-  private baseUrl: string = 'http://127.0.0.1:8000/images/';
-  private baseUrl2: string = 'http://127.0.0.1:8000/images-for-web/';
+  private baseUrl: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images/';
+  private baseUrl2: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/';
   mainLoadingActive = true
   loadinNewPropertiesgActive = false
   page = 1

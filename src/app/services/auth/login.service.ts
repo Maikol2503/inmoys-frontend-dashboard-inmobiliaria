@@ -16,7 +16,8 @@ export class LoginService {
   isAdministrador:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   currenUserData:BehaviorSubject<User> = new BehaviorSubject<User>({id:0, correo:''})
  
-  private url = 'http://127.0.0.1:8000'; // Ajusta la ruta según la ubicación del archivo
+  // private url = 'http://127.0.0.1:8000'; // Ajusta la ruta según la ubicación del archivo
+  private url = 'https://inmoys-backend-inmobiliaria-1.onrender.com'
   email: string = '';
   token_key = 'token'
 

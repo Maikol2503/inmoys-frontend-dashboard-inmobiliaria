@@ -44,8 +44,8 @@ export class InicioComponent implements OnInit{
   propertiesData:Propiedad[] = [];
   propertiesDataCopy:Propiedad[] = [];
   propertiesDataFinal:Propiedad[] = [];
-  private baseUrl: string = 'http://127.0.0.1:8000/images/';
-  private baseUrl2: string = 'http://127.0.0.1:8000/images-for-web/';
+  private baseUrl: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images/';
+  private baseUrl2: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images-for-web/';
   totalEnAlquilerDisponibles: number = 0;
   totalEnVentaDisponibles: number = 0;
   totalPropiedades: number = 0;

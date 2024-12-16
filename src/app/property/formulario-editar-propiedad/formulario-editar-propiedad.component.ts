@@ -49,7 +49,7 @@ calefaccion: boolean= false;
 totalImageSizeMB: number = 0
 propertyId!:number
 imagenesActuales!:any
-private baseUrl: string = 'http://127.0.0.1:8000/images/';
+private baseUrl: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images/';
 mensajeDelPadre: any;
 
 detallesVivienda:any;

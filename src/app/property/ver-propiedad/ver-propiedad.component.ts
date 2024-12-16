@@ -22,7 +22,7 @@ export class VerPropiedadComponent implements OnInit{
 propertyId!:any
 propertiesData: Propiedad = {} as Propiedad;
 imagePreviews: ImagePreview[] = [];
-private baseUrl: string = 'http://127.0.0.1:8000/images/';
+private baseUrl: string = 'https://inmoys-backend-inmobiliaria-1.onrender.com/images/';
 
 constructor(private route: ActivatedRoute, private PropertyService:PropertiesService){}
 
