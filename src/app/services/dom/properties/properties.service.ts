@@ -82,7 +82,7 @@ export class PropertiesService {
 
   addProperty(newProperty: any):Observable<any> {
     console.log(newProperty, 'newpropiedad')
-    return this.http.post<any>('http://localhost:8000/api/publicar-propiedad/', newProperty).pipe(
+    return this.http.post<any>(`${this.url}/api/publicar-propiedad/`, newProperty).pipe(
       tap(response => {
           // console.log(response, 'response add properties')
           // const currentProperties = this.propertiesSubject.value;
